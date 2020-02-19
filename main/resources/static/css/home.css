@@ -2,9 +2,11 @@
 
 /* tag指定 */
 
-html {
-	font-size: 15px;
-}
+/*-------------------------------
+
+	背景画像指定
+
+-------------------------------*/
 
 body {
 	background-image: url("../image/body-bg.jpg");
@@ -15,33 +17,77 @@ body {
 	padding-top: 50px;
 }
 
-li {
-	padding-left: 20px;
+/*-------------------------------
+
+	文字サイズ指定：全体
+
+-------------------------------*/
+
+html {
+	font-size: 15px;
 }
+
+/*-------------------------------
+
+	タイトルインデント
+
+-------------------------------*/
 
 h2 {
-	padding-left: 20px;
-}
+	padding-left: 1em;
+	}
 
-ul li {
-  padding-left: 0px;
+/*-------------------------------
+
+	リストインデント
+
+-------------------------------*/
+
+li {
+	padding-left: 20px;
 }
 
 ol li {
   padding-left: 4px;
 }
 
+ul li {
+  padding-left: 0px;
+}
+
+/*-------------------------------
+
+	テーブル背景指定
+
+-------------------------------*/
+
 td{
 	background-color: white;
 }
 
-/* class指定 */
-.header-bg {
-	background-color: #000000;
-	}
 
-.indent-padding {
-  padding-left: 2em;
+
+/* class指定 */
+
+/*-------------------------------
+
+	ホーム画面レイアウト
+
+-------------------------------*/
+
+.box1 {
+	width: 40%;
+	float: left;
+	font-size: 16px;
+	padding-left: 2em;
+}
+
+.box2 {
+	width: 60%;
+	float: right;
+	font-size: 16px;
+	padding-left: 2em;
+	padding-right: 2em;
 }
 
 .list-border {
@@ -49,30 +95,6 @@ td{
 	border: 1px gray solid;
 	padding-top:10px;
 	padding-bottom:10px;
-}
-
-.code-border {
-	font-size: 14px;
-	background: lightgray;
-	border: 1px gray solid;
-	padding-top:10px;
-	padding-bottom:10px;
-	margin: 10px;
-}
-
-.valign-c {
-	margin-top: 7px;
-	margin-bottom: -10px;
-}
-
-.sidebar {
-	height: 100vh;
-	padding-top: 20px;
-	position: fixed;
-	display: block;
-	top: 50px;
-	buttom: 0;
-	background-color: #4d4d4d;
 }
 
 .main {
@@ -84,9 +106,77 @@ td{
 	bottom: 0;
 }
 
-.page-header {
-	margin-top: 0px;
+/*-------------------------------
+
+	ボタン位置
+
+-------------------------------*/
+
+.center {
+	text-align: center;
 }
+
+/*-------------------------------
+
+	コード画面レイアウト
+
+-------------------------------*/
+
+.code-border {
+	font-size: 16px;
+	background: lightgray;
+	border: 1px gray solid;
+	padding-top:10px;
+	padding-left:5px;
+	padding-bottom:10px;
+	margin: 10px;
+}
+
+/*-------------------------------
+
+	フォントサイズ変更
+
+-------------------------------*/
+
+.font-sc {
+	font-size: 12px;
+}
+
+/*-------------------------------
+
+	ヘッダー背景
+
+-------------------------------*/
+
+.header-bg {
+	background-color: #000000;
+	}
+
+/*-------------------------------
+
+	インデント調整
+
+-------------------------------*/
+
+.indent-padding {
+  padding-left: 2em;
+}
+
+/*-------------------------------
+
+	ボタン位置調整
+
+-------------------------------*/
+
+.btn-margin {
+  margin-right: 3em;
+}
+
+/*-------------------------------
+
+	水平線調整
+
+-------------------------------*/
 
 .line {
 	color: #000000;
@@ -99,31 +189,11 @@ td{
 	width: 100%;
 }
 
-.result-bar {
-	font-size: 16px;
-	width: 250px;
-	line-height: 35px;
-}
+/*-------------------------------
 
-.box1 {
-	width: 40%;
-	float: left;
-	font-size: 16px;
-	padding-left: 2em;
-	padding-right: 1em;
-}
+	スクロールバー設定
 
-.box2 {
-	width: 60%;
-	float: right;
-	font-size: 16px;
-	padding-left: 2em;
-	padding-right: 2em;
-}
-
-.btn-center {
-	text-align: center;
-}
+-------------------------------*/
 
 .scroll {
 	position: relative;
@@ -139,8 +209,38 @@ td{
 	overflow-y: auto;
 }
 
-.font-sc {
-	font-size: 12px;
+.scroll-3 {
+	position: relative;
+	max-height: 90%;
+	height: 90vh;
+	overflow-y: auto;
+}
+
+/*-------------------------------
+
+	サイドバーレイアウト
+
+-------------------------------*/
+
+.sidebar {
+	height: 100vh;
+	padding-top: 20px;
+	position: fixed;
+	display: block;
+	top: 50px;
+	buttom: 0;
+	background-color: #4d4d4d;
+}
+
+/*-------------------------------
+
+	テーブルサイズ調整
+
+-------------------------------*/
+
+.valign-c {
+	margin-top: 7px;
+	margin-bottom: -10px;
 }
 
 .width-20 {

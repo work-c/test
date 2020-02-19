@@ -6,10 +6,10 @@
 </head>
 <body>
 	<div th:fragment="admin_contents">
-		<div class="page-header d-flex justify-content-between align-items-center">
+		<div class="d-flex justify-content-between align-items-center">
 			<h2>【管理者用】ユーザー一覧</h2>
 			<label class="text-info align-middle" th:text="${result}">結果表示</label>
-			<a class="btn btn-primary" th:href="@{'/adminCreate'}">ユーザー追加</a>
+			<a class="btn btn-primary btn-margin" th:href="@{'/adminCreate'}">ユーザー追加</a>
 		</div>
 		<hr/>
 		<div class="scroll col-sm-auto">
@@ -32,7 +32,7 @@
 					<td class="border-secondary align-middle" th:text="${user.age}"></td>
 					<td class="border-secondary align-middle" th:text="${user.marrige} ? '既婚' : '未婚' "></td>
 					<td class="border-secondary align-middle" th:text="${user.role}"></td>
-					<td class="btn-center border-secondary">
+					<td class="text-center border-secondary">
 						<a class="btn btn-primary" th:href="@{'/adminDetail/' + ${user.userId}}">編集</a>
 					</td>
 				</tr>
