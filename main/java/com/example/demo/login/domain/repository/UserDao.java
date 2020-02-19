@@ -6,6 +6,11 @@ import org.springframework.dao.DataAccessException;
 
 import com.example.demo.login.domain.model.User;
 
+/**
+ * @author work
+ *
+ */
+
 public interface UserDao {
 
 	public int count() throws DataAccessException;

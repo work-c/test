@@ -14,35 +14,76 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 
+/**
+ * @author work
+ *
+ */
+
 @Data
 public class ValidForm {
 
-    //必須入力、メールアドレス形式
+
+
+		/**
+     * ユーザーID：必須入力、メールアドレス形式
+     */
+
     @NotBlank(groups = ValidGroup1.class)
     @Email(groups = ValidGroup2.class)
-    private String userId; // ユーザーID
+    private String userId;
 
-    //必須入力、長さ4から100桁まで、半角英数字のみ
+
+
+    /**
+     * パスワード：必須入力、長さ4から100桁まで、半角英数字のみ
+     */
+
     @NotBlank(groups = ValidGroup1.class)
     @Length(min = 4, max = 100, groups = ValidGroup2.class)
     @Pattern(regexp = "^[a-zA-Z0-9]+$", groups = ValidGroup3.class)
-    private String password; // パスワード
+    private String password;
 
-    //必須入力
+
+
+    /**
+     * ユーザー名：必須入力
+     */
+
     @NotBlank(groups = ValidGroup1.class)
-    private String userName; // ユーザー名
+    private String userName;
 
-    //必須入力
+
+
+    /**
+     * 誕生日：必須入力
+     */
+
     @NotNull(groups = ValidGroup1.class)
     @DateTimeFormat(pattern = "yyyy/MM/dd")
-    private Date birthday; // 誕生日
+    private Date birthday;
 
-    //値が20から100まで
+
+
+    /**
+     * 年齢：値が20から100まで
+     */
     @Min(value = 20, groups = ValidGroup2.class)
     @Max(value = 100, groups = ValidGroup2.class)
-    private int age; // 年齢
+    private int age;
 
-    private boolean marrige; // 結婚ステータス
+
+
+    /**
+     *	結婚ステータス
+     */
+
+    private boolean marrige;
+
+
+
+  	/**
+  	 *	権限
+  	 */
 
   	private String role;
 

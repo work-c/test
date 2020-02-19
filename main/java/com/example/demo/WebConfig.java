@@ -7,8 +7,19 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * @author work
+ *
+ */
+
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+
+
+
+    /**
+     * @return
+     */
 
     @Bean
     public MessageSource messageSource() {
@@ -24,6 +35,12 @@ public class WebConfig implements WebMvcConfigurer {
 
         return bean;
     }
+
+
+
+    /**
+     * @return
+     */
 
     @Bean
     public LocalValidatorFactoryBean localValidatorFactoryBean() {

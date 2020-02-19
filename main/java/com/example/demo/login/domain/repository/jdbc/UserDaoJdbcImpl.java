@@ -14,6 +14,11 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.login.domain.model.User;
 import com.example.demo.login.domain.repository.UserDao;
 
+/**
+ * @author work
+ *
+ */
+
 @Repository("UserDaoJdbcImpl")
 public class UserDaoJdbcImpl implements UserDao {
 
@@ -23,12 +28,24 @@ public class UserDaoJdbcImpl implements UserDao {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
+
+
+	/**
+	 * 件数カウント
+	 */
+
 	@Override
 	public int count() throws DataAccessException {
 
 		int count = jdbc.queryForObject("SELECT COUNT(*) FROM m_user", Integer.class);
 		return count;
 	}
+
+
+
+	/**
+	 * １ユーザー追加
+	 */
 
 	@Override
 	public int insertOne(User user) throws DataAccessException {
@@ -55,6 +72,12 @@ public class UserDaoJdbcImpl implements UserDao {
 		return rowNumber;
 	}
 
+
+
+	/**
+	 * １ユーザー検索
+	 */
+
 	@Override
 	public User selectOne(String userId) throws DataAccessException {
 
@@ -72,6 +95,12 @@ public class UserDaoJdbcImpl implements UserDao {
 
 		return user;
 	}
+
+
+
+	/**
+	 * 全ユーザー検索
+	 */
 
 	@Override
 	public List<User> selectMany() throws DataAccessException {
@@ -96,6 +125,12 @@ public class UserDaoJdbcImpl implements UserDao {
 
 		return userList;
 	}
+
+
+
+	/**
+	 * 1ユーザー更新
+	 */
 
 	@Override
 	public int updateOne(User user) throws DataAccessException {
@@ -126,11 +161,23 @@ public class UserDaoJdbcImpl implements UserDao {
 		return rowNumber;
 	}
 
+
+
+	/**
+	 * 1ユーザー削除
+	 */
+
 	@Override
 	public int deleteOne(String userId) throws DataAccessException {
 		int rowNumber = jdbc.update("DELETE FROM m_user WHERE user_id = ?", userId);
 		return rowNumber;
 	}
+
+
+
+	/**
+	 * ユーザーリストCSV出力：　※　ローカル環境のみ
+	 */
 
 	@Override
 	public void userCsvOut() throws DataAccessException {

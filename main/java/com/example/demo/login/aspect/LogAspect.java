@@ -5,9 +5,22 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author work
+ *
+ */
+
 @Aspect
 @Component
 public class LogAspect {
+
+
+
+	/**
+	 * @param jp
+	 * @return
+	 * @throws Throwable
+	 */
 
 	@Around("execution(* *..*.*Controller.*(..))")
 	public Object startLog(ProceedingJoinPoint jp) throws Throwable {
@@ -27,6 +40,14 @@ public class LogAspect {
 		}
 
 	}
+
+
+
+	/**
+	 * @param jp
+	 * @return
+	 * @throws Throwable
+	 */
 
 	@Around("execution(* *..*.*UserDao*.*(..))")
 	public Object daoLog(ProceedingJoinPoint jp) throws Throwable {

@@ -14,13 +14,26 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
+/**
+ * @author work
+ *
+ */
+
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+
+
+	/**
+	 * @return
+	 */
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+
+
 
 	@Autowired
 	private DataSource dataSource;
@@ -43,10 +56,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			+ " user_id = ?";
 
 
+
+	/**
+	 *
+	 */
+
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/webjars/**", "/css/**");
 	}
+
+
+
+	/**
+	 *
+	 */
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -76,6 +100,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		RequestMatcher csrfMatcher = new RestMatcher("/rest/**");
 		http.csrf().requireCsrfProtectionMatcher(csrfMatcher);
 	}
+
+
+
+	/**
+	 *
+	 */
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {

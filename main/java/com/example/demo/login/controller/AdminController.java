@@ -24,8 +24,9 @@ import com.example.demo.login.domain.service.UserService;
 
 /**
  * @author work
- *	管理者用画面コントローラー
+ * 管理者用画面コントローラー
  */
+
 @Controller
 public class AdminController {
 
@@ -41,8 +42,10 @@ public class AdminController {
 
 	/**
 	 * @param model
-	 * @return 管理者用ユーザー一覧画面
+	 * @return
+	 * 管理者用ユーザー一覧画面
 	 */
+
 	@GetMapping("/admin")
 	public String getAdmin(Model model) {
 		model.addAttribute("contents", "login/admin :: admin_contents");
@@ -77,8 +80,10 @@ public class AdminController {
 	/**
 	 * @param form
 	 * @param model
-	 * @return 管理者用ユーザー登録画面
+	 * @return
+	 * 管理者用ユーザー登録画面
 	 */
+
 	@GetMapping("/adminCreate")
 	public String getAdminCreate(@ModelAttribute ValidForm form, Model model) {
 		model.addAttribute("contents", "login/adminCreate :: adminCreate_contents");
@@ -95,8 +100,10 @@ public class AdminController {
 	 * @param form
 	 * @param bindingResult
 	 * @param model
-	 * @return 管理者用ユーザー登録実行
+	 * @return
+	 * 管理者用ユーザー登録実行
 	 */
+
 	@PostMapping(value="/adminCreate", params="insert")
 	public String postAdminCreate(@ModelAttribute @Validated(GroupOrder.class) ValidForm form,
 			BindingResult bindingResult, Model model) {
@@ -143,8 +150,10 @@ public class AdminController {
 
 
 	/**
-	 * @return 管理者用ユーザー一覧画面へ遷移
+	 * @return
+	 * 管理者用ユーザー一覧画面へ遷移
 	 */
+
 	@PostMapping(value="/adminCreate", params="return")
 	public String postReturn() {
 		return "redirect:/admin";
@@ -156,8 +165,10 @@ public class AdminController {
 	 * @param form
 	 * @param model
 	 * @param userId
-	 * @return 管理者用ユーザー詳細画面
+	 * @return
+	 * 管理者用ユーザー詳細画面
 	 */
+
 	@GetMapping("/adminDetail/{id:.+}")
 	public String getAdminDetail(@ModelAttribute ValidForm form, Model model,
 			@PathVariable("id") String userId) {
@@ -188,8 +199,10 @@ public class AdminController {
 	/**
 	 * @param form
 	 * @param model
-	 * @return 管理者用ユーザー情報更新実行
+	 * @return
+	 * 管理者用ユーザー情報更新実行
 	 */
+
 	@PostMapping(value="/adminDetail", params="update")
 	public String postAdminDetailUpdate(@ModelAttribute @Validated(GroupOrder.class) ValidForm form,
 			BindingResult bindingResult, Model model) {
@@ -241,8 +254,10 @@ public class AdminController {
 	/**
 	 * @param form
 	 * @param model
-	 * @return 管理者用ユーザー削除実行
+	 * @return
+	 * 管理者用ユーザー削除実行
 	 */
+
 	@PostMapping(value="/adminDetail", params="delete")
 	public String postUserDetailDelete(@ModelAttribute ValidForm form, Model model) {
 

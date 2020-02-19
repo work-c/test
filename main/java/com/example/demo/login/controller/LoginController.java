@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * @author work
- *	ログイン用コントローラー
+ * ログイン用コントローラー
  */
+
 @Controller
 public class LoginController {
 
@@ -18,8 +19,10 @@ public class LoginController {
 
 	/**
 	 * @param model
-	 * @return ログイン画面
+	 * @return
+	 * ログイン画面
 	 */
+
 	@GetMapping("/login")
 	public String getLogin(Model model) {
 
@@ -30,18 +33,24 @@ public class LoginController {
 
 	/**
 	 * @param model
-	 * @return ホーム画面からログイン画面へリダイレクト
+	 * @return
+	 * ホーム画面からログイン画面へリダイレクト
 	 */
+
 	@PostMapping("/login")
 	public String postLogin(Model model) {
 
 		return "redirect:/home";
 	}
 
+
+
 	/**
 	 * @param model
-	 * @return ホーム画面
+	 * @return
+	 * ホーム画面
 	 */
+
 	@GetMapping("/home")
 	public String getHome(Model model) {
 
@@ -52,8 +61,10 @@ public class LoginController {
 
 
 	/**
-	 * @return ログアウトしログイン画面へ遷移
+	 * @return
+	 * ログアウトしログイン画面へ遷移
 	 */
+
 	@PostMapping("/logout")
 	public String postLogout() {
 

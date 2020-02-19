@@ -5,8 +5,18 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+/**
+ * @author work
+ *
+ */
+
 @Service
 public class SelectService {
+
+	/**
+	 * @return
+	 * 結婚用ラジオボタン設定値
+	 */
 
 	public Map<String, String> initRadioMarrige() {
 		Map<String, String> radio = new LinkedHashMap<>();

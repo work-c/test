@@ -5,14 +5,31 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
+/**
+ * @author work
+ *
+ */
+
 public class RestMatcher implements RequestMatcher {
 
 	private AntPathRequestMatcher matcher;
+
+
+
+	/**
+	 * @param url
+	 */
 
 	public RestMatcher(String url) {
 		super();
 		matcher = new AntPathRequestMatcher(url);
 	}
+
+
+
+	/**
+	 *
+	 */
 
 	@Override
 	public boolean matches(HttpServletRequest request) {

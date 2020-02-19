@@ -4,6 +4,11 @@ import java.util.List;
 
 import com.example.demo.login.domain.model.User;
 
+/**
+ * @author work
+ *
+ */
+
 public interface RestService {
 
 	public boolean insert(User user);

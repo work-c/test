@@ -28,8 +28,9 @@ import com.example.demo.login.domain.service.UserService;
 
 /**
  * @author work
- *	ユーザー用画面コントローラー
+ * ユーザー用画面コントローラー
  */
+
 @Controller
 public class UserController {
 
@@ -46,8 +47,10 @@ public class UserController {
 
 	/**
 	 * @param model
-	 * @return ユーザー用ユーザー一覧画面
+	 * @return
+	 * ユーザー用ユーザー一覧画面
 	 */
+
 	@GetMapping("/userList")
 	public String getUserList(Model model) {
 		model.addAttribute("contents", "login/userList :: userList_contents");
@@ -67,8 +70,10 @@ public class UserController {
 	/**
 	 * @param form
 	 * @param model
-	 * @return ユーザー用ユーザー登録画面
+	 * @return
+	 * ユーザー用ユーザー登録画面
 	 */
+
 	@GetMapping("/userCreate")
 	public String getUserCreate(@ModelAttribute ValidForm form, Model model) {
 		model.addAttribute("contents", "login/userCreate :: userCreate_contents");
@@ -85,8 +90,10 @@ public class UserController {
 	 * @param form
 	 * @param bindingResult
 	 * @param model
-	 * @return ユーザー用ユーザー登録実行
+	 * @return
+	 * ユーザー用ユーザー登録実行
 	 */
+
 	@PostMapping(value="/userCreate", params="insert")
 	public String postUserCreate(@ModelAttribute @Validated(GroupOrder.class) ValidForm form,
 			BindingResult bindingResult, Model model) {
@@ -122,7 +129,9 @@ public class UserController {
 
 	/**
 	 * @return
+	 * ユーザー用ユーザー一覧画面へ遷移
 	 */
+
 	@PostMapping(value="/userCreate", params="return")
 	public String postReturn() {
 		return "redirect:/userList";
@@ -134,8 +143,10 @@ public class UserController {
 	 * @param form
 	 * @param model
 	 * @param userId
-	 * @return ユーザー用ユーザー一覧画面へ遷移
+	 * @return
+	 * ユーザー用ユーザー一覧画面へ遷移
 	 */
+
 	@GetMapping("/userDetail/{id:.+}")
 	public String getUserDetail(@ModelAttribute ValidForm form, Model model,
 			@PathVariable("id") String userId) {
@@ -165,8 +176,10 @@ public class UserController {
 
 	/**
 	 * @param model
-	 * @return ユーザー用ユーザー詳細画面
+	 * @return
+	 * ユーザー用ユーザー詳細画面
 	 */
+
 	@GetMapping("/userList/csv")
 	public ResponseEntity<byte[]> getUserListCsv(Model model) {
 
@@ -193,8 +206,10 @@ public class UserController {
 	/**
 	 * @param form
 	 * @param model
-	 * @return ユーザー用ユーザー情報更新実行
+	 * @return
+	 * ユーザー用ユーザー情報更新実行
 	 */
+
 	@PostMapping(value="/userDetail", params="update")
 	public String postUserDetailUpdate(@ModelAttribute @Validated(GroupOrder.class) ValidForm form,
 			BindingResult bindingResult, Model model) {
@@ -235,8 +250,10 @@ public class UserController {
 	/**
 	 * @param form
 	 * @param model
-	 * @return ユーザー用ユーザー削除実行
+	 * @return
+	 * ユーザー用ユーザー削除実行
 	 */
+
 	@PostMapping(value="/userDetail", params="delete")
 	public String postUserDetailDelete(@ModelAttribute ValidForm form, Model model) {
 

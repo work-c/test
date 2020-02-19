@@ -5,9 +5,18 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author work
+ *
+ */
+
 @Aspect
 @Component
 public class ErrorAspect {
+
+	/**
+	 * @param ex
+	 */
 
 	@AfterThrowing(value="execution(* *..*..*(..))"
 			+ "&&(bean(*Controller) || bean(*Service) || bean(*Repository))", throwing="ex")

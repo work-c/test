@@ -7,6 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+/**
+ * @author work
+ * エラー用コントローラー
+ */
+
 @ControllerAdvice
 @Component
 public class GlobalControllAdvice {

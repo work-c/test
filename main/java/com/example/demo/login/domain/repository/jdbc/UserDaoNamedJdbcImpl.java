@@ -14,6 +14,11 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.login.domain.model.User;
 import com.example.demo.login.domain.repository.UserDao;
 
+/**
+ * @author work
+ *
+ */
+
 @Repository("UserDaoNamedJdbcImpl")
 public class UserDaoNamedJdbcImpl implements UserDao {
 

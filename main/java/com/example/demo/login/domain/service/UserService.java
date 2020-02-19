@@ -20,6 +20,15 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 import com.example.demo.login.domain.model.User;
 import com.example.demo.login.domain.repository.UserDao;
 
+/**
+ * @author work
+ *
+ */
+
+/**
+ * @author work
+ *
+ */
 @Transactional
 @Service
 public class UserService {
@@ -30,6 +39,12 @@ public class UserService {
 
 	@Autowired
 	PlatformTransactionManager txManager;
+
+	/**
+	 * @param user
+	 * @return
+	 * １ユーザー追加
+	 */
 
 	public boolean insert(User user) {
 
@@ -44,17 +59,45 @@ public class UserService {
 		return result;
 	}
 
+
+
+	/**
+	 * @return
+	 * 件数カウント
+	 */
+
 	public int count() {
 		return dao.count();
 	}
+
+
+
+	/**
+	 * @return
+	 * 全ユーザー検索
+	 */
 
 	public List<User> selectMany() {
 		return dao.selectMany();
 	}
 
+
+
+	/**
+	 * @param userId
+	 * @return
+	 * １ユーザー検索
+	 */
+
 	public User selectOne(String userId) {
 		return dao.selectOne(userId);
 	}
+
+	/**
+	 * @param user
+	 * @return
+	 * 1ユーザー更新
+	 */
 
 	public boolean updateOne(User user) {
 
@@ -85,6 +128,14 @@ public class UserService {
 		return result;
 	}
 
+
+
+	/**
+	 * @param userId
+	 * @return
+	 * 1ユーザー削除
+	 */
+
 	public boolean deleteOne(String userId) {
 
 		int rowNumber = dao.deleteOne(userId);
@@ -97,9 +148,25 @@ public class UserService {
 		return result;
 	}
 
+
+
+	/**
+	 * @throws DataAccessException
+	 * ユーザーリストCSV出力：　※　ローカル環境のみ
+	 */
+
 	public void userCsvOut() throws DataAccessException {
 		dao.userCsvOut();
 	}
+
+
+
+	/**
+	 * @param fileName
+	 * @return
+	 * @throws IOException
+	 *
+	 */
 
 	public byte[] getFile(String fileName) throws IOException {
 		FileSystem fs = FileSystems.getDefault();
