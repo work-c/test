@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="UTF-8">
+	<title>ソースコード一覧</title>
+</head>
+<body>
+	<div th:fragment="codeHome_contents">
+			<pre class="code-border"><code>
+	package com.example.demo.login.controller;
+
+	import org.springframework.stereotype.Controller;
+	import org.springframework.ui.Model;
+	import org.springframework.web.bind.annotation.GetMapping;
+
+	@Controller
+	public class CodeController {
+
+		@GetMapping("/codeHome")
+		public String getCodeHome(Model model) {
+
+			model.addAttribute("contents", "login/codeHome :: codeHome_contents");
+			return "login/homeLayout";
+		}
+
+	}
+			</code></pre>
+	</div>
+</body>
+</html>

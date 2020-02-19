@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<div th:fragment="userList_contents">
+		<div class="page-header d-flex justify-content-between align-items-center">
+			<h2>ユーザー一覧</h2>
+			<label class="text-info align-middle" th:text="${result}">結果表示</label>
+			<a class="btn btn-primary" th:href="@{'/userCreate'}">ユーザー追加</a>
+		</div>
+		<hr/>
+		<div class="scroll col-sm-auto">
+			<table class="table table-bordered table-hover table-sm">
+				<thead class="thead-dark">
+					<tr>
+						<th class="border-secondary align-middle">ユーザーID</th>
+						<th class="border-secondary align-middle">ユーザー名</th>
+						<th class="border-secondary align-middle">誕生日</th>
+						<th class="border-secondary align-middle">年齢</th>
+						<th class="border-secondary align-middle">結婚</th>
+						<th class="border-secondary align-middle"></th>
+					</tr>
+				</thead>
+				<tr th:each="user:${userList}">
+					<td class="border-secondary align-middle" th:text="${user.userId}"></td>
+					<td class="border-secondary align-middle" th:text="${user.userName}"></td>
+					<td class="border-secondary align-middle" th:text="${#dates.format(user.birthday, 'YYYY/MM/dd')}"></td>
+					<td class="border-secondary align-middle" th:text="${user.age}"></td>
+					<td class="border-secondary align-middle" th:text="${user.marrige} ? '既婚' : '未婚' "></td>
+					<td class="btn-center border-secondary">
+						<a class="btn btn-primary" th:href="@{'/userDetail/' + ${user.userId}}">編集</a>
+					</td>
+				</tr>
+			</table>
+			<label class="h5" th:text="'　合計：' + ${userListCount} + '件'"></label>
+			<!--
+			<a class="btn btn-primary float-right" th:href="@{'/userList/csv'}">CSV出力</a>
+			-->
+		</div>
+	</div>
+</body>
+</html>
