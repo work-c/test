@@ -1,0 +1,9 @@
+cloud:
+  aws:
+    stack:
+      # CloudFormationのstack名を自動収集しない
+      auto: false
+    region:
+      # EC2のmetadataを自動収集しない
+      auto: false
+      static: ap-northeast-1
