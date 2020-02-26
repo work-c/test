@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.login.domain.model.GroupOrder;
 import com.example.demo.login.domain.model.User;
-import com.example.demo.login.domain.model.ValidForm;
+import com.example.demo.login.domain.model.ValidFormAdmin;
+import com.example.demo.login.domain.service.AdminService;
 import com.example.demo.login.domain.service.SelectService;
 import com.example.demo.login.domain.service.UserService;
 
@@ -32,6 +33,9 @@ public class AdminController {
 
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	AdminService adminService;
 
 	@Autowired
 	SelectService selectService;
@@ -85,7 +89,7 @@ public class AdminController {
 	 */
 
 	@GetMapping("/adminCreate")
-	public String getAdminCreate(@ModelAttribute ValidForm form, Model model) {
+	public String getAdminCreate(@ModelAttribute ValidFormAdmin form, Model model) {
 		model.addAttribute("contents", "login/adminCreate :: adminCreate_contents");
 
 		initMarrige = selectService.initRadioMarrige();
@@ -105,7 +109,7 @@ public class AdminController {
 	 */
 
 	@PostMapping(value="/adminCreate", params="insert")
-	public String postAdminCreate(@ModelAttribute @Validated(GroupOrder.class) ValidForm form,
+	public String postAdminCreate(@ModelAttribute @Validated(GroupOrder.class) ValidFormAdmin form,
 			BindingResult bindingResult, Model model) {
 
 		if(bindingResult.hasErrors()) {
@@ -120,6 +124,8 @@ public class AdminController {
 		user.setBirthday(form.getBirthday());
 		user.setAge(form.getAge());
 		user.setMarrige(form.isMarrige());
+		user.setAddress(form.getAddress());
+		user.setTel(form.getTel());
 
 		String role = form.getRole();
 
@@ -136,12 +142,19 @@ public class AdminController {
 				user.setRole("ROLE_GENERAL");
 		}
 
-		boolean result = userService.insert(user);
+		try {
 
-		if(result == true) {
-			System.out.println("insert成功");
-		} else {
-			System.out.println("insert失敗");
+			boolean result = adminService.insertAdmin(user);
+
+			if(result == true) {
+				System.out.println("insert成功");
+			} else {
+				System.out.println("insert失敗");
+			}
+
+		} catch(DataAccessException e) {
+			model.addAttribute("result", "更新失敗（トランザクションテスト）");
+			return getAdminCreate(form, model);
 		}
 
 		return "redirect:/admin";
@@ -169,26 +182,29 @@ public class AdminController {
 	 * 管理者用ユーザー詳細画面
 	 */
 
-	@GetMapping("/adminDetail/{id:.+}")
-	public String getAdminDetail(@ModelAttribute ValidForm form, Model model,
-			@PathVariable("id") String userId) {
+	@GetMapping("/adminDetail/{userId:.+}")
+	public String getAdminDetail(@ModelAttribute ValidFormAdmin form, Model model,
+			@PathVariable("userId") String userId) {
 
-		model.addAttribute("contents", "login/adminDetail::adminDetail_contents");
+		model.addAttribute("contents", "login/adminDetail :: adminDetail_contents");
 
 		initMarrige = selectService.initRadioMarrige();
 		model.addAttribute("radioMarrige", initMarrige);
 
 		if(userId != null && userId.length() > 0) {
-			User user = userService.selectOne(userId);
+			User user = adminService.selectOneAdmin(userId);
 
+			form.setId(user.getId());
 			form.setUserId(user.getUserId());
 			form.setUserName(user.getUserName());
 			form.setBirthday(user.getBirthday());
 			form.setAge(user.getAge());
 			form.setMarrige(user.isMarrige());
 			form.setRole(user.getRole());
+			form.setAddress(user.getAddress());
+			form.setTel(user.getTel());
 
-			model.addAttribute("validForm", form);
+			model.addAttribute("validFormAdmin", form);
 		}
 
 		return "login/homeLayout";
@@ -204,7 +220,7 @@ public class AdminController {
 	 */
 
 	@PostMapping(value="/adminDetail", params="update")
-	public String postAdminDetailUpdate(@ModelAttribute @Validated(GroupOrder.class) ValidForm form,
+	public String postAdminDetailUpdate(@ModelAttribute @Validated(GroupOrder.class) ValidFormAdmin form,
 			BindingResult bindingResult, Model model) {
 
 		if(bindingResult.hasErrors()) {
@@ -213,12 +229,15 @@ public class AdminController {
 
 		User user = new User();
 
+		user.setId(form.getId());
 		user.setUserId(form.getUserId());
 		user.setPassword(form.getPassword());
 		user.setUserName(form.getUserName());
 		user.setBirthday(form.getBirthday());
 		user.setAge(form.getAge());
 		user.setMarrige(form.isMarrige());
+		user.setAddress(form.getAddress());
+		user.setTel(form.getTel());
 
 		String role = form.getRole();
 
@@ -235,13 +254,14 @@ public class AdminController {
 
 		try {
 
-			boolean result = userService.updateOne(user);
+			boolean result = adminService.updateOneAdmin(user);
 
 			if(result == true) {
 				model.addAttribute("result", "更新成功");
 			} else {
 				model.addAttribute("result", "更新失敗");
 			}
+
 		} catch(DataAccessException e) {
 			model.addAttribute("result", "更新失敗（トランザクションテスト）");
 		}
@@ -259,11 +279,11 @@ public class AdminController {
 	 */
 
 	@PostMapping(value="/adminDetail", params="delete")
-	public String postUserDetailDelete(@ModelAttribute ValidForm form, Model model) {
+	public String postUserDetailDelete(@ModelAttribute ValidFormAdmin form, Model model) {
 
 		System.out.println("削除ボタンの処理");
 
-		boolean result = userService.deleteOne(form.getUserId());
+		boolean result = adminService.deleteOneAdmin(form.getUserId());
 
 		if(result == true) {
 			model.addAttribute("result", "削除成功");

@@ -15,6 +15,8 @@ public interface RestService {
 
 	public User selectOne(String userId);
 
+	public User selectOneAdmin(String userId);
+
 	public List<User> selectMany();
 
 	public boolean update(User user);

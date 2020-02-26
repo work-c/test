@@ -42,8 +42,8 @@ public class UserRestController {
 	 * @return
 	 */
 
-	@GetMapping("/rest/get/{id:.+}")
-	public User getUserOne(@PathVariable("id") String userId) {
+	@GetMapping("/rest/get/{userId:.+}")
+	public User getUserOne(@PathVariable("userId") String userId) {
 		return service.selectOne(userId);
 	}
 
@@ -98,8 +98,8 @@ public class UserRestController {
 	 * @return
 	 */
 
-	@DeleteMapping("/rest/delete/{id:.+}")
-	public String deleteUserOne(@PathVariable("id") String userId) {
+	@DeleteMapping("/rest/delete/{userId:.+}")
+	public String deleteUserOne(@PathVariable("userId") String userId) {
 
 		boolean result = service.delete(userId);
 		String str = "";

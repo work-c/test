@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.login.domain.model.User;
+import com.example.demo.login.domain.repository.AdminDao;
 import com.example.demo.login.domain.repository.UserDao;
 import com.example.demo.login.domain.service.RestService;
 
@@ -18,6 +19,10 @@ public class RestServiceJdbcImpl implements RestService {
 	@Autowired
 	@Qualifier("UserDaoJdbcImpl")
 	UserDao dao;
+
+	@Autowired
+	@Qualifier("AdminDaoJdbcImpl")
+	AdminDao adminDao;
 
 	@Override
 	public boolean insert(User user) {
@@ -35,6 +40,11 @@ public class RestServiceJdbcImpl implements RestService {
 	@Override
 	public User selectOne(String userId) {
 		return dao.selectOne(userId);
+	}
+
+	@Override
+	public User selectOneAdmin(String userId) {
+		return adminDao.selectOneAdmin(userId);
 	}
 
 	@Override
@@ -58,7 +68,7 @@ public class RestServiceJdbcImpl implements RestService {
 	@Override
 	public boolean delete(String userId) {
 
-		int result = dao.deleteOne(userId);
+		int result = adminDao.deleteOneAdmin(userId);
 
 		if(result == 0) {
 			return false;

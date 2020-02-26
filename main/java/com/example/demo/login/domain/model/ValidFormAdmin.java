@@ -20,7 +20,7 @@ import lombok.Data;
  */
 
 @Data
-public class ValidForm {
+public class ValidFormAdmin {
 
 		/**
 		 *
@@ -99,6 +99,7 @@ public class ValidForm {
   	 *	住所
   	 */
 
+    @NotBlank(groups = ValidGroup1.class)
   	private String address;
 
 
@@ -108,6 +109,7 @@ public class ValidForm {
   	 *	連絡先
   	 */
 
-   	private String tel;
+    @Pattern(regexp = "0\\d{1,3}-\\d{1,4}-\\d{4}", groups = ValidGroup1.class)
+  	private String tel;
 
 }

@@ -53,12 +53,12 @@ public class UserDaoJdbcImpl implements UserDao {
 		String password = passwordEncoder.encode(user.getPassword());
 
 		int rowNumber = jdbc.update("INSERT INTO m_user(user_id,"
-				+ "password,"
-				+ "user_name,"
-				+ "birthday,"
-				+ "age,"
-				+ "marrige,"
-				+ "role)"
+				+ " password,"
+				+ " user_name,"
+				+ " birthday,"
+				+ " age,"
+				+ " marrige,"
+				+ " role)"
 				+ " VALUES(?,?,?,?,?,?,?)"
 				, user.getUserId()
 				, password
@@ -75,16 +75,34 @@ public class UserDaoJdbcImpl implements UserDao {
 
 
 	/**
+	 * ユーザーテーブルに１ユーザー追加成功後、詳細テーブルに１ユーザーを追加
+	 */
+
+	@Override
+	public int insertOneAfter(User user) throws DataAccessException {
+
+		int rowNumber = jdbc.update("INSERT INTO a_user(id, user_id)"
+				+ " SELECT id, user_id FROM m_user WHERE user_id = ?"
+				, user.getUserId()
+			);
+
+		return rowNumber;
+	}
+
+
+
+	/**
 	 * １ユーザー検索
 	 */
 
 	@Override
 	public User selectOne(String userId) throws DataAccessException {
 
-		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM m_user" + " WHERE user_id = ?", userId);
+		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM m_user" + " WHERE user_Id = ?", userId);
 
 		User user = new User();
 
+		user.setId((Integer)map.get("id"));
 		user.setUserId((String)map.get("user_id"));
 		user.setPassword((String)map.get("password"));
 		user.setUserName((String)map.get("user_name"));
@@ -112,6 +130,7 @@ public class UserDaoJdbcImpl implements UserDao {
 		for(Map<String, Object> map : getList) {
 			User user = new User();
 
+			user.setId((Integer)map.get("id"));
 			user.setUserId((String)map.get("user_id"));
 			user.setPassword((String)map.get("password"));
 			user.setUserName((String)map.get("user_name"));
@@ -139,20 +158,22 @@ public class UserDaoJdbcImpl implements UserDao {
 
 		int rowNumber = jdbc.update("UPDATE m_user "
 				+ "SET "
+				+ "user_id = ?,"
 				+ "password = ?,"
 				+ "user_name = ?,"
 				+ "birthday = ?,"
 				+ "age = ?,"
 				+ "marrige = ?,"
 				+ "role = ?"
-				+ " WHERE user_id = ?"
+				+ " WHERE id = ?"
+				, user.getUserId()
 				, password
 				, user.getUserName()
 				, user.getBirthday()
 				, user.getAge()
 				, user.isMarrige()
 				, user.getRole()
-				, user.getUserId());
+				, user.getId());
 
 		//if(rowNumber > 0) {
 			//throw new DataAccessException("トランザクションテスト") {};
@@ -167,11 +188,13 @@ public class UserDaoJdbcImpl implements UserDao {
 	 * 1ユーザー削除
 	 */
 
+	/** 削除処理を管理者のみへ変更
 	@Override
 	public int deleteOne(String userId) throws DataAccessException {
 		int rowNumber = jdbc.update("DELETE FROM m_user WHERE user_id = ?", userId);
 		return rowNumber;
 	}
+	*/
 
 
 
@@ -179,6 +202,7 @@ public class UserDaoJdbcImpl implements UserDao {
 	 * ユーザーリストCSV出力：　※　ローカル環境のみ
 	 */
 
+	/** オンライン環境での動作確認が取れていないので停止
 	@Override
 	public void userCsvOut() throws DataAccessException {
 
@@ -187,5 +211,6 @@ public class UserDaoJdbcImpl implements UserDao {
 		jdbc.query(sql, handler);
 
 	}
+	*/
 
 }

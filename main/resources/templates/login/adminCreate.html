@@ -10,9 +10,10 @@
 			<div class="col-sm-8">
 				<div>
 					<h2>【管理者用】ユーザー登録</h2>
+					<label class="text-info align-middle" th:text="${result}">結果表示</label>
 				</div>
 				<hr class="line-max"/>
-				<form method="post" th:action="@{/adminCreate}" th:object="${validForm}" >
+				<form method="post" th:action="@{/adminCreate}" th:object="${validFormAdmin}" >
 					<table class="table table-bordered table-hover table-sm">
 
 						<!-- ユーザID入力エリア -->
@@ -61,6 +62,41 @@
 								<div class="col-auto m-auto">
 									<span class="text-danger m-auto font-sc float-right" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">
 									userName error</span>
+								</div>
+							</td>
+						</tr>
+
+						<!-- 住所入力エリア -->
+						<tr>
+							<th class="active border-secondary bg-dark text-light align-middle">住所</th>
+							<td>
+								<div class="row align-items-center m-auto">
+									<div class="form-group col-sm-12">
+										<input type="text" class="form-control form-control-sm valign-c" th:field="*{address}" />
+									</div>
+								</div>
+								<div class="col-auto m-auto">
+									<span class="text-danger m-auto font-sc float-right" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">
+									address error</span>
+								</div>
+							</td>
+						</tr>
+
+						<!-- 連絡先入力エリア -->
+						<tr>
+							<th class="active border-secondary bg-dark text-light align-middle">連絡先</th>
+							<td>
+								<div class="row align-items-center m-auto">
+									<div class="form-group col-sm-5">
+										<input type="text" class="form-control form-control-sm valign-c" th:field="*{tel}" />
+									</div>
+									<div class="col-auto m-auto">
+										<small>※ 10～11桁、半角数字のみ　</small>
+									</div>
+								</div>
+								<div class="col-auto m-auto">
+									<span class="text-danger m-auto font-sc float-right" th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}">
+									tel error</span>
 								</div>
 							</td>
 						</tr>
@@ -128,6 +164,7 @@
 									</div>
 								</td>
 							</tr>
+
 					</table>
 
 					<!-- ユーザー登録ボタン -->

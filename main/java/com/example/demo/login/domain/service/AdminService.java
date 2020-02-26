@@ -1,7 +1,5 @@
 package com.example.demo.login.domain.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
@@ -13,21 +11,15 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.example.demo.login.domain.model.User;
-import com.example.demo.login.domain.repository.UserDao;
-
-
-/**
- * @author work
- *
- */
+import com.example.demo.login.domain.repository.AdminDao;
 
 @Transactional
 @Service
-public class UserService {
+public class AdminService {
 
 	@Autowired
-	@Qualifier("UserDaoJdbcImpl")
-	UserDao dao;
+	@Qualifier("AdminDaoJdbcImpl")
+	AdminDao dao;
 
 	@Autowired
 	PlatformTransactionManager txManager;
@@ -37,18 +29,17 @@ public class UserService {
 	/**
 	 * @param user
 	 * @return
-	 * １ユーザー追加
+	 * １ユーザー追加：管理者用
 	 */
 
-	public boolean insert(User user) {
+	public boolean insertAdmin(User user) {
 
-		int rowNumber = dao.insertOne(user);
+		int rowNumber = dao.insertOneAdmin(user);
 
 		boolean result = false;
 
 		if(rowNumber > 0) {
 			result = true;
-			dao.insertOneAfter(user);
 		}
 
 		return result;
@@ -57,35 +48,13 @@ public class UserService {
 
 
 	/**
-	 * @return
-	 * 件数カウント
-	 */
-
-	public int count() {
-		return dao.count();
-	}
-
-
-
-	/**
-	 * @return
-	 * 全ユーザー検索
-	 */
-
-	public List<User> selectMany() {
-		return dao.selectMany();
-	}
-
-
-
-	/**
 	 * @param userId
 	 * @return
-	 * １ユーザー検索
+	 * １ユーザー検索：管理者用
 	 */
 
-	public User selectOne(String userId) {
-		return dao.selectOne(userId);
+	public User selectOneAdmin(String userId) {
+		return dao.selectOneAdmin(userId);
 	}
 
 
@@ -93,10 +62,10 @@ public class UserService {
 	/**
 	 * @param user
 	 * @return
-	 * 1ユーザー更新
+	 * 1ユーザー更新：管理者用
 	 */
 
-	public boolean updateOne(User user) {
+	public boolean updateOneAdmin(User user) {
 
 		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
 
@@ -109,7 +78,7 @@ public class UserService {
 
 		try {
 
-			int rowNumber = dao.updateOne(user);
+			int rowNumber = dao.updateOneAdmin(user);
 
 			if(rowNumber > 0) {
 				result = true;
@@ -135,10 +104,9 @@ public class UserService {
 	 * 1ユーザー削除
 	 */
 
-	/** 削除処理を管理者のみへ変更
-	public boolean deleteOne(String userId) {
+	public boolean deleteOneAdmin(String userId) {
 
-		int rowNumber = dao.deleteOne(userId);
+		int rowNumber = dao.deleteOneAdmin(userId);
 		boolean result = false;
 
 		if(rowNumber > 0) {
@@ -147,38 +115,6 @@ public class UserService {
 
 		return result;
 	}
-	**/
 
-
-
-	/**
-	 * @throws DataAccessException
-	 * ユーザーリストCSV出力：　※　ローカル環境のみ
-	 */
-
-	/** オンライン環境での動作確認が取れていないので停止
-	public void userCsvOut() throws DataAccessException {
-		dao.userCsvOut();
-	}
-	*/
-
-
-
-	/**
-	 * @param fileName
-	 * @return
-	 * @throws IOException
-	 *
-	 */
-
-	/** オンライン環境での動作確認が取れていないので停止
-	public byte[] getFile(String fileName) throws IOException {
-		FileSystem fs = FileSystems.getDefault();
-		Path p = fs.getPath(fileName);
-		byte[] bytes = Files.readAllBytes(p);
-
-		return bytes;
-	}
-	*/
 
 }

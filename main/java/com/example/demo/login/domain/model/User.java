@@ -14,6 +14,7 @@ public class User {
 
 	public User() {}
 
+	private int Id;
 	private String userId;
 	private String password;
 	private String userName;
@@ -21,5 +22,7 @@ public class User {
 	private int age;
 	private boolean marrige;
 	private String role;
+	private String address;
+	private String tel;
 
 }

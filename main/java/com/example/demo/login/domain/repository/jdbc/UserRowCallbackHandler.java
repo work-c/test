@@ -21,7 +21,8 @@ public class UserRowCallbackHandler implements RowCallbackHandler {
 			BufferedWriter bw = new BufferedWriter(fw);
 
 			do {
-				String str = rs.getString("user_id") + ","
+				String str = rs.getInt("id") + ","
+					+ rs.getString("user_id") + ","
 					+ rs.getString("password") + ","
 					+ rs.getString("user_name") + ","
 					+ rs.getDate("birthday") + ","

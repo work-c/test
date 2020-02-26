@@ -1,14 +1,10 @@
 package com.example.demo.login.controller;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -147,9 +143,9 @@ public class UserController {
 	 * ユーザー用ユーザー一覧画面へ遷移
 	 */
 
-	@GetMapping("/userDetail/{id:.+}")
+	@GetMapping("/userDetail/{userId:.+}")
 	public String getUserDetail(@ModelAttribute ValidForm form, Model model,
-			@PathVariable("id") String userId) {
+			@PathVariable("userId") String userId) {
 
 		model.addAttribute("contents", "login/userDetail :: userDetail_contents");
 
@@ -180,6 +176,7 @@ public class UserController {
 	 * ユーザー用ユーザー詳細画面
 	 */
 
+	/** オンライン環境での動作確認が取れていないので停止
 	@GetMapping("/userList/csv")
 	public ResponseEntity<byte[]> getUserListCsv(Model model) {
 
@@ -200,6 +197,7 @@ public class UserController {
 
 		return new ResponseEntity<>(bytes, header, HttpStatus.OK);
 	}
+	*/
 
 
 
@@ -254,6 +252,7 @@ public class UserController {
 	 * ユーザー用ユーザー削除実行
 	 */
 
+	/** 削除処理を管理者のみへ変更
 	@PostMapping(value="/userDetail", params="delete")
 	public String postUserDetailDelete(@ModelAttribute ValidForm form, Model model) {
 
@@ -269,6 +268,7 @@ public class UserController {
 
 		return getUserList(model);
 	}
+	*/
 
 
 
