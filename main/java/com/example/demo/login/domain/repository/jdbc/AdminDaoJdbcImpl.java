@@ -145,7 +145,15 @@ public class AdminDaoJdbcImpl implements AdminDao {
 
 	@Override
 	public int deleteOneAdmin(String userId) throws DataAccessException {
+
 		int rowNumber = jdbc.update("DELETE FROM m_user WHERE user_id = ?", userId);
+
+		if(rowNumber > 0) {
+
+			rowNumber = jdbc.update("DELETE FROM a_user WHERE user_id = ?", userId);
+
+		}
+
 		return rowNumber;
 	}
 

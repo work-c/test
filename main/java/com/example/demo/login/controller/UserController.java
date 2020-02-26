@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.demo.login.domain.model.GroupOrder;
 import com.example.demo.login.domain.model.User;
 import com.example.demo.login.domain.model.ValidForm;
-import com.example.demo.login.domain.service.SelectService;
+import com.example.demo.login.domain.service.CommonService;
 import com.example.demo.login.domain.service.UserService;
 
 
@@ -34,7 +34,7 @@ public class UserController {
 	UserService userService;
 
 	@Autowired
-	SelectService selectService;
+	CommonService commonService;
 
 	private Map<String, String> initMarrige;
 	private String keepRole;
@@ -55,7 +55,7 @@ public class UserController {
 
 		model.addAttribute("userList", userList);
 
-		int count = userService.count();
+		int count = commonService.count();
 		model.addAttribute("userListCount", count);
 
 		return "login/homeLayout";
@@ -74,7 +74,7 @@ public class UserController {
 	public String getUserCreate(@ModelAttribute ValidForm form, Model model) {
 		model.addAttribute("contents", "login/userCreate :: userCreate_contents");
 
-		initMarrige = selectService.initRadioMarrige();
+		initMarrige = commonService.initRadioMarrige();
 		model.addAttribute("radioMarrige", initMarrige);
 
 		return "login/homeLayout";
@@ -149,7 +149,7 @@ public class UserController {
 
 		model.addAttribute("contents", "login/userDetail :: userDetail_contents");
 
-		initMarrige = selectService.initRadioMarrige();
+		initMarrige = commonService.initRadioMarrige();
 		model.addAttribute("radioMarrige", initMarrige);
 
 		if(userId != null && userId.length() > 0) {

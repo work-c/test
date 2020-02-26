@@ -162,6 +162,10 @@ td{
   padding-left: 2em;
 }
 
+.indent-margin {
+  margin-left: -2em;
+}
+
 /*-------------------------------
 
 	ボタン位置調整

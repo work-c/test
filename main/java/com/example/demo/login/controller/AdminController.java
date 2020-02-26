@@ -18,7 +18,7 @@ import com.example.demo.login.domain.model.GroupOrder;
 import com.example.demo.login.domain.model.User;
 import com.example.demo.login.domain.model.ValidFormAdmin;
 import com.example.demo.login.domain.service.AdminService;
-import com.example.demo.login.domain.service.SelectService;
+import com.example.demo.login.domain.service.CommonService;
 import com.example.demo.login.domain.service.UserService;
 
 
@@ -38,7 +38,7 @@ public class AdminController {
 	AdminService adminService;
 
 	@Autowired
-	SelectService selectService;
+	CommonService commonService;
 
 	private Map<String, String> initMarrige;
 
@@ -73,7 +73,7 @@ public class AdminController {
 
 		model.addAttribute("userList", userList);
 
-		int count = userService.count();
+		int count = commonService.count();
 		model.addAttribute("userListCount", count);
 
 		return "login/homeLayout";
@@ -92,7 +92,7 @@ public class AdminController {
 	public String getAdminCreate(@ModelAttribute ValidFormAdmin form, Model model) {
 		model.addAttribute("contents", "login/adminCreate :: adminCreate_contents");
 
-		initMarrige = selectService.initRadioMarrige();
+		initMarrige = commonService.initRadioMarrige();
 		model.addAttribute("radioMarrige", initMarrige);
 
 		return "login/homeLayout";
@@ -188,7 +188,7 @@ public class AdminController {
 
 		model.addAttribute("contents", "login/adminDetail :: adminDetail_contents");
 
-		initMarrige = selectService.initRadioMarrige();
+		initMarrige = commonService.initRadioMarrige();
 		model.addAttribute("radioMarrige", initMarrige);
 
 		if(userId != null && userId.length() > 0) {

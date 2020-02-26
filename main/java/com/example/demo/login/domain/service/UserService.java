@@ -58,17 +58,6 @@ public class UserService {
 
 	/**
 	 * @return
-	 * 件数カウント
-	 */
-
-	public int count() {
-		return dao.count();
-	}
-
-
-
-	/**
-	 * @return
 	 * 全ユーザー検索
 	 */
 

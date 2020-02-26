@@ -3,7 +3,11 @@ package com.example.demo.login.domain.service;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+import com.example.demo.login.domain.repository.UserDao;
 
 /**
  * @author work
@@ -11,7 +15,24 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class SelectService {
+public class CommonService {
+
+	@Autowired
+	@Qualifier("UserDaoJdbcImpl")
+	UserDao dao;
+
+
+
+	/**
+	 * @return
+	 * 件数カウント
+	 */
+
+	public int count() {
+		return dao.count();
+	}
+
+
 
 	/**
 	 * @return
